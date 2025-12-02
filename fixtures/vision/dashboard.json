@@ -1,0 +1,51 @@
+{
+  "regions": [
+    {
+      "bounds": { "x": 48, "y": 96, "width": 320, "height": 180 },
+      "classification": {
+        "category": "spacing_alignment",
+        "subcategory": "card_gutter_inconsistent"
+      },
+      "severity": { "level": "medium", "score": 0.46 },
+      "notes": [
+        "Card gutters vary between sections, making scanning harder.",
+        "Normalise horizontal spacing to align with the 16px grid."
+      ]
+    },
+    {
+      "bounds": { "x": 720, "y": 112, "width": 180, "height": 64 },
+      "classification": {
+        "category": "interaction_targets",
+        "subcategory": "primary_cta_spacing"
+      },
+      "severity": { "level": "high", "score": 0.78 },
+      "notes": [
+        "Primary CTA crowding neighbouring controls; tap area below 44px.",
+        "Increase padding and isolate from secondary action."
+      ]
+    }
+  ],
+  "attention_grid": {
+    "grid": {
+      "width": 2,
+      "height": 2,
+      "values": [
+        [0.35, 0.65],
+        [0.42, 0.18]
+      ]
+    },
+    "source": "vision",
+    "normalization": "minmax"
+  },
+  "summary": {
+    "strengths": [
+      "Hero typography hierarchy is clear.",
+      "Consistent illustration style across the dashboard."
+    ],
+    "weaknesses": [
+      "Spacing inconsistencies between card sections.",
+      "Primary CTAs feel cramped on desktop layout."
+    ]
+  }
+}
+

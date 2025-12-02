@@ -1,0 +1,124 @@
+{
+  "name": "agentux",
+  "displayName": "AgentUX",
+  "description": "VS Code extension that analyses UI screenshots with OpenAI Vision, a multi-agent UX pipeline, and an interactive webview.",
+  "version": "0.1.1",
+  "publisher": "GenLabX",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agentux/agentux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/agentux/agentux/issues"
+  },
+  "type": "commonjs",
+  "main": "./out/extension.js",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "icon": "assets/icon.png",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "ux",
+    "ui",
+    "design",
+    "accessibility",
+    "contrast",
+    "typography",
+    "spacing",
+    "screenshot",
+    "analysis",
+    "audit",
+    "vision",
+    "openai",
+    "heatmap",
+    "usability",
+    "design-system"
+  ],
+  "activationEvents": [
+    "onCommand:agentux.analyzeScreenshot",
+    "onCommand:agentux.setApiKey",
+    "onCommand:agentux.configureContext",
+    "onCommand:agentux.rerunLastAnalysis",
+    "onCommand:agentux.exportResults",
+    "onCommand:agentux.openPanel"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "agentux.analyzeScreenshot",
+        "title": "UX Audit: Analyse Screenshot"
+      },
+      {
+        "command": "agentux.setApiKey",
+        "title": "UX Audit: Set OpenAI API Key"
+      },
+      {
+        "command": "agentux.configureContext",
+        "title": "UX Audit: Configure Context"
+      },
+      {
+        "command": "agentux.rerunLastAnalysis",
+        "title": "UX Audit: Re-run Last Analysis"
+      },
+      {
+        "command": "agentux.exportResults",
+        "title": "UX Audit: Export Results"
+      },
+      {
+        "command": "agentux.openPanel",
+        "title": "UX Audit: Open UX Panel"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "agentux.analyzeScreenshot",
+          "when": "resourceExtname == '.png' || resourceExtname == '.jpg' || resourceExtname == '.jpeg'",
+          "group": "agentux"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "rimraf out && tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "test": "npm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "check:openai": "ts-node scripts/check-openai.ts",
+    "vision:sample": "ts-node scripts/sample-vision.ts",
+    "vision:batch": "ts-node scripts/batch-vision.ts",
+    "vision:real": "ts-node scripts/run-vision-real.ts",
+    "render:overlays": "ts-node scripts/render-overlay.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/pngjs": "^6.0.4",
+    "@types/vscode": "^1.90.0",
+    "@typescript-eslint/eslint-plugin": "^7.10.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.3.0",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "jsonrepair": "^3.6.6",
+    "node-fetch": "^2.7.0",
+    "openai": "^4.104.0",
+    "web-streams-polyfill": "^3.3.3",
+    "zod": "^3.23.8"
+  }
+}

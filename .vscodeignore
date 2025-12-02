@@ -1,0 +1,72 @@
+# VS Code Extension Package Exclusions
+# Files and folders to exclude from VSIX package
+
+# Environment files with sensitive data
+.env
+.env.*
+*.env
+.env.test
+.env.local
+.env.development
+.env.production
+
+# Node modules
+# Include the entire node_modules folder to ensure no runtime dependency is missing.
+
+# Development scripts (not needed in extension)
+scripts/
+*.ts
+!out/**/*.js
+
+# Test files
+tests/
+*.test.ts
+*.spec.ts
+vitest.config.ts
+vitest.integration.config.ts
+
+# Development artifacts
+artifacts/
+*.log
+*.md
+!README.md
+
+# Source TypeScript files (only compiled JS needed)
+src/
+!out/
+
+# Development configuration
+.vscode/
+.git/
+.gitignore
+.prettierrc*
+.eslintrc*
+tsconfig.json
+package-lock.json
+
+# Documentation (keep README only)
+docs/
+AGENTS.md
+
+# Fixtures and test data
+fixtures/
+
+# Build artifacts
+*.vsix
+*.map
+
+# Keep assets folder
+!assets/
+
+# IDE files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
