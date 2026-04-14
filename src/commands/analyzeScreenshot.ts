@@ -171,8 +171,7 @@ const resolveLocalPath = (uri?: vscode.Uri): string | null => {
     return null;
   }
 
-  const normalized = path.normalize(fsPath);
-  return fs.existsSync(normalized) ? normalized : null;
+  return path.normalize(fsPath);
 };
 
 export const analyzeScreenshot = async (
@@ -180,21 +179,39 @@ export const analyzeScreenshot = async (
   fileUri?: vscode.Uri,
 ): Promise<void> => {
   try {
-    let screenshotPath: string | null = resolveLocalPath(fileUri);
+    const INVALID_SELECTION_MESSAGE =
+      'Invalid file selection. Please select a local image file.';
 
-    if (!screenshotPath) {
-      screenshotPath = resolveLocalPath(getActiveImageEditor());
-    }
+    let screenshotPath: string | null = null;
 
-    if (!screenshotPath) {
-      screenshotPath = resolveLocalPath(await pickScreenshot());
-    }
-
-    if (!screenshotPath) {
-      vscode.window.showErrorMessage(
-        'Invalid or unreadable screenshot. Please select a local image file.',
-      );
-      return;
+    // If invoked from context menu with a URI, never fall back to the file picker.
+    if (fileUri) {
+      const candidate = resolveLocalPath(fileUri);
+      if (!candidate || !fs.existsSync(candidate)) {
+        vscode.window.showErrorMessage(INVALID_SELECTION_MESSAGE);
+        return;
+      }
+      screenshotPath = candidate;
+    } else {
+      // If an image is open in the active editor, use it (and do not show the picker).
+      const activeUri = getActiveImageEditor();
+      if (activeUri) {
+        const candidate = resolveLocalPath(activeUri);
+        if (!candidate || !fs.existsSync(candidate)) {
+          vscode.window.showErrorMessage(INVALID_SELECTION_MESSAGE);
+          return;
+        }
+        screenshotPath = candidate;
+      } else {
+        // Otherwise, prompt the user to pick a file.
+        const pickedUri = await pickScreenshot();
+        const candidate = resolveLocalPath(pickedUri);
+        if (!candidate || !fs.existsSync(candidate)) {
+          vscode.window.showErrorMessage(INVALID_SELECTION_MESSAGE);
+          return;
+        }
+        screenshotPath = candidate;
+      }
     }
 
     const metadata = await resolveMetadata();

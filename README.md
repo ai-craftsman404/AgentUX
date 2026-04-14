@@ -1,5 +1,7 @@
 # AgentUX — VS Code Extension for Screenshot UX Audits
 
+[![AgentUX CI](https://github.com/ai-craftsman404/AgentUX/actions/workflows/agentux-ci.yml/badge.svg)](https://github.com/ai-craftsman404/AgentUX/actions/workflows/agentux-ci.yml)
+
 AgentUX reviews static UI screenshots with OpenAI Vision, a strict JSON pipeline, and an interactive VS Code webview. It surfaces spacing, typography, contrast, navigation, interaction, and design-system insights backed by attention heatmaps and region overlays.
 
 ## Two Distinct Output Formats
