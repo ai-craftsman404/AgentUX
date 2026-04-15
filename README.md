@@ -2,6 +2,10 @@
 
 [![AgentUX CI](https://github.com/ai-craftsman404/AgentUX/actions/workflows/agentux-ci.yml/badge.svg)](https://github.com/ai-craftsman404/AgentUX/actions/workflows/agentux-ci.yml)
 
+AgentUX turns static screenshots into prioritized UX fixes with visual overlays and category-level findings.
+
+**Proof links:** [Release v0.1.0](https://github.com/ai-craftsman404/AgentUX/releases/tag/v0.1.0) · [Demo/Screenshots](#two-distinct-output-formats) · [Architecture](docs/ARCHITECTURE.md)
+
 AgentUX reviews static UI screenshots with OpenAI Vision, a strict JSON pipeline, and an interactive VS Code webview. It surfaces spacing, typography, contrast, navigation, interaction, and design-system insights backed by attention heatmaps and region overlays.
 
 ## Two Distinct Output Formats
